@@ -18,6 +18,6 @@ runs:
   using: composite
   steps:
     - id: tag-operation-action
-      run: bash $GITHUB_ACTION_PATH/src/tag-action.sh ${{ inputs.operation }} ${{ inputs.increment }}
+      run: bash $GITHUB_ACTION_PATH/tag-action.sh ${{ inputs.operation }} ${{ inputs.increment }}
       shell: bash
   
