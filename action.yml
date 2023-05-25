@@ -1,0 +1,23 @@
+name: 'Increment Version Tags'
+description: 'Increments major minor and patch versions'
+
+inputs:
+  operation:
+    description: 'Select update or show the list of tags that match the semver scheme.'
+    required: true
+    default: 'show'
+  increment:
+    description: 'Either major, minor or patch'
+    required: false
+    default: ''
+outputs:
+  next-version:
+    description: 'The next version that was created and tagged using the semver format <major>.<minor>.<patch>'
+    value: ${{ steps.tag-version.outputs.revision }}
+runs:
+  using: composite
+  steps:
+    - id: tag-operation-action
+      run: bash $GITHUB_ACTION_PATH/src/tag-action.sh ${{ inputs.operation }} ${{ inputs.increment }}
+      shell: bash
+  
