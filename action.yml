@@ -10,6 +10,10 @@ inputs:
     description: 'Either major, minor or patch'
     required: false
     default: ''
+  suffix:
+    description: 'Can be a branch name or just empty. Then it will be ommitted.'
+    required: false
+    default: ''
 outputs:
   next-version:
     description: 'The next version that was created and tagged using the semver format <major>.<minor>.<patch>'
@@ -18,6 +22,6 @@ runs:
   using: composite
   steps:
     - id: tag-operation-action
-      run: bash $GITHUB_ACTION_PATH/tag-action.sh ${{ inputs.operation }} ${{ inputs.increment }}
+      run: bash $GITHUB_ACTION_PATH/tag-action.sh ${{ inputs.operation }} ${{ inputs.increment }} ${{ inputs.suffix }}
       shell: bash
   
